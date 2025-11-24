@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const JWT_SECRETKEY = 'choijeongHeaum';
 
 // Sequelize 모델 불러오기
 const db = require('./models');
@@ -21,7 +23,7 @@ db.sequelize.sync({ force: false })
     console.error('❌ DB 연결 에러:', err);
   });
 
-// 로그인 API
+// 로그인 API (jwt 토큰 생성 후 보냄)
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -33,10 +35,12 @@ app.post('/login', async (req, res) => {
     }
 
     if (user.password === password) {
+      const token = jwt.sign(user.name, JWT_SECRETKEY);
+
       res.status(200).json({
         message: "로그인 성공",
-        token: `sample_token_${user.id}`,
-        user: { name: user.name, email: user.email }
+        token,
+        user
       });
     } else {
       return res.status(401).json({ message: "비밀번호가 일치하지 않습니다." });

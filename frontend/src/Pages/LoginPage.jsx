@@ -1,18 +1,24 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { Package, UserPlus } from 'lucide-react';
 import { useHttp } from '../hooks/useHttp';
 
+// util
 import { validate } from '../utils/validate';
 
 // component
 import Input from '../Components/Input';
 import Button from '../Components/Button';
 
+// Context
+import AuthContext from '../store/auth-context';
+
 const LoginScreen = () => {
   const navigate = useNavigate();
   const { sendRequest, data, error, isLoading } = useHttp();
 
+  const authCtx = useContext(AuthContext);
+  
   // 폼 데이터
   const [formData, setFormData] = useState({
     email: '',
@@ -51,6 +57,7 @@ const LoginScreen = () => {
 
     // 로그인 성공 시 이동
     if (result) {
+      authCtx.login(result.token);
       navigate('/dashboard');
     }
   };
