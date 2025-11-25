@@ -82,13 +82,6 @@ const SignupPage = () => {
           </p>
         </div>
 
-        {/* 에러 메시지 표시 영역 (에러 발생 시에만 보임) */}
-        {error && (
-          <div className="mb-4 p-3 bg-red-50 text-red-500 text-sm rounded-lg">
-            {error}
-          </div>
-        )}
-
         {/* 입력 필드 영역 */}
         <div className="flex flex-col gap-4 mb-6">
           {/* 이름 입력 */}
@@ -125,6 +118,12 @@ const SignupPage = () => {
             className="mt-4"
           />
         </div>
+         {/* 에러 메시지 */}
+        {error && (
+          <div className="mb-4 p-3 bg-red-50 text-red-500 text-sm rounded-lg">
+            {error}
+          </div>
+        )}
 
         {/* 회원가입 버튼 */}
         <Button
