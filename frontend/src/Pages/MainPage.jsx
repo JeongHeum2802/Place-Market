@@ -16,8 +16,6 @@ const MainLayout = () => {
       {/* 메인 콘텐츠 영역 */}
       <main className="flex-1 flex flex-col min-w-0">
         <Header />
-
-        {/* ★ 여기가 핵심! 주소에 따라 바뀌는 내용이 여기에 들어옵니다 ★ */}
         <div className="flex-1 overflow-auto p-6 bg-gray-50">
           <Outlet /> 
         </div>
