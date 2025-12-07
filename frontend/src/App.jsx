@@ -8,7 +8,8 @@ import SignupPage from './Pages/SignupPage';
 import MainPage from './Pages/MainPage';
 
 // component
-import DashboardContent from './Components/MainPage/Dashboard';
+import DashboardContent from './Components/MainPage/outlet/Dashboard';
+import Inventory from './Components/MainPage/outlet/Invetroty';
 
 // contextProvider
 import { AuthContextProvider } from './store/auth-context';
@@ -28,7 +29,7 @@ export default function App() {
           {/* (B) 메인 관리자 페이지: MainLayout 안에서 내용만 바꿔 끼움 */}
           <Route element={<MainPage />}>
             <Route path="/dashboard" element={<DashboardContent />} />
-            <Route path="/inventory" element={<div>재고 관리 페이지</div>} />
+            <Route path="/inventory" element={<Inventory />} />
           </Route>
 
         </Routes>
